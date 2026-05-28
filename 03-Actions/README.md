@@ -2,6 +2,7 @@
 
 ## Video reference for this lecture is the following:
 
+[![Watch the video](https://img.youtube.com/vi/IV2Focqf11Q/maxresdefault.jpg)](https://www.youtube.com/watch?v=IV2Focqf11Q&ab_channel=CloudWithVarJosh)
 
 ---
 ## ⭐ Support the Project  
@@ -70,6 +71,8 @@ By the end of this lecture, you will understand how modern GitHub Actions workfl
 
 ## Understanding Actions in GitHub Actions
 
+![Alt text](/images/3a.png)
+
 In GitHub Actions, **actions** are reusable automation components that perform predefined tasks inside workflows. Instead of manually writing every operation using `run:`, actions allow you to reuse packaged automation logic created by GitHub, third-party vendors, open-source communities, or your own organization.
 
 Modern CI/CD pipelines heavily rely on **reusable automation** instead of manually scripting everything from scratch. Actions commonly help automate:
@@ -93,6 +96,19 @@ Modern CI/CD pipelines heavily rely on **reusable automation** instead of manual
 > * **actions** → reusable automation building blocks executed within workflows
 
 Actions are typically consumed using the **`uses:` keyword** inside workflow steps, whereas custom shell commands are typically executed using the `run:` keyword.
+
+> **Conceptual Note:** Actions in GitHub Actions are essentially a way of packaging automation logic into **reusable workflow components**. Instead of repeatedly writing the same operational commands across workflows, reusable actions help standardize and simplify automation execution.
+>
+> This concept is not entirely new to DevOps engineers. Historically, teams have commonly used **shell scripts, Bash scripts, Python scripts, and automation tooling** to package repetitive operational commands into reusable executable units. This helped:
+>
+> * reduce manual effort
+> * minimize human error
+> * standardize operational behavior
+> * improve automation consistency
+> * accelerate execution workflows
+>
+> GitHub Actions extends this idea further by allowing reusable automation components to be versioned, shared, distributed, and consumed directly inside CI/CD workflows using the `uses:` keyword.
+
 
 ---
 
@@ -182,6 +198,8 @@ Useful evaluation indicators commonly include:
 
 ## Sources of Actions
 
+![Alt text](/images/3b.png)
+
 Actions used in GitHub Actions workflows commonly originate from one of the following sources:
 
 1. **Official GitHub Actions**
@@ -194,6 +212,18 @@ Actions used in GitHub Actions workflows commonly originate from one of the foll
    Custom reusable actions developed internally by organizations to standardize automation across repositories and engineering teams.
 
 > **Operational Insight:** Modern CI/CD pipelines rarely rely only on custom shell scripting. Production workflows heavily leverage **reusable actions** to accelerate delivery, standardize automation behavior, reduce repetitive operational work, and integrate external tooling into workflows.
+
+> **Recommendation:** If both GitHub and a third party provide similar actions for the same task, organizations often prefer the **official GitHub-maintained action** because of tighter platform integration and ecosystem trust.
+>
+> However, for platform-specific operations, vendor-maintained actions are often preferred. For example, for AWS-specific workflows, many organizations prefer actions maintained by **AWS** because they are typically more aligned with AWS services, authentication models, and feature updates.
+>
+> That said, there is no strict rule. The action you choose should:
+>
+> * satisfy your operational use-case
+> * be actively maintained
+> * be widely adopted by the community
+> * have good documentation and support
+> * align with your organization's security and operational requirements
 
 ---
 
@@ -280,6 +310,8 @@ In this demo, we will build and execute a simple **containerized Flask applicati
 * custom shell commands (`run:`)
 
 The overall workflow architecture for this demo is shown in the attached workflow diagram.
+
+![Alt text](/images/3c.png)
 
 In this demo pipeline:
 
@@ -771,6 +803,8 @@ In the previous demo, we built and executed a containerized Flask application di
 In this demo, we will evolve that workflow further by introducing additional **reusable GitHub Actions** that simplify authentication, container image building, and image publishing workflows.
 
 The overall workflow architecture for this demo is shown in the attached workflow diagram.
+
+![Alt text](/images/3d.png)
 
 In this demo pipeline:
 
