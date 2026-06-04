@@ -2,6 +2,7 @@
 
 ## Video reference for this lecture is the following:
 
+[![Watch the video](https://img.youtube.com/vi/KIH79Y3xJ8c/maxresdefault.jpg)](https://www.youtube.com/watch?v=KIH79Y3xJ8c&ab_channel=CloudWithVarJosh)
 
 ---
 ## ⭐ Support the Project  
@@ -27,11 +28,11 @@ If this **repository** helps you, give it a ⭐ to show your support and help ot
   * [Step 7: Creating a Pull Request and Observing Workflow Execution](#step-7-creating-a-pull-request-and-observing-workflow-execution)  
   * [Step 8: Demonstrating the Synchronize Activity Type](#step-8-demonstrating-the-synchronize-activity-type)  
 * [Variables, Contexts, and Expressions in GitHub Actions](#variables-contexts-and-expressions-in-github-actions)  
-  * [1. Variables (`$VARIABLE` Syntax)](#1-variables-variable-syntax)  
+  * [1. Variables ](#1-variables-variable-syntax)  
     * [A. Default Variables Provided by GitHub](#a-default-variables-provided-by-github)  
     * [B. Custom Variables Created by Users](#b-custom-variables-created-by-users)  
-  * [2. Contexts (`${{ }}` Syntax)](#2-contexts--syntax)  
-  * [3. Expressions (`${{ }}`)](#3-expressions-)  
+  * [2. Contexts](#2-contexts--syntax)  
+  * [3. Expressions ](#3-expressions--) 
   * [Determining When to Use Variables, Contexts, and Expressions](#determining-when-to-use-variables-contexts-and-expressions)  
 * [**Demo:** Understanding Variables, Contexts, and Expressions in GitHub Actions](#demo-understanding-variables-contexts-and-expressions-in-github-actions)  
   * [Step 1: Creating the Project Structure and Initializing Git](#step-1-creating-the-project-structure-and-initializing-git)  
@@ -65,6 +66,8 @@ We will also perform multiple hands-on demos to validate real-world workflow exe
 ---
 
 ## Refining Workflow Triggers Behavior
+
+![Alt text](/images/4a.png)
 
 GitHub Actions provides multiple ways to customize when workflows should execute. Two important mechanisms used for refining workflow trigger behavior are:
 
@@ -861,19 +864,35 @@ Because of this overlap, understanding **what variables are**, **how contexts wo
 
 ### 1. Variables (`$VARIABLE` Syntax)
 
-Concepts: [GitHub Actions Variables Concepts](https://docs.github.com/en/actions/concepts/workflows-and-actions/variables)
+**Concepts:** [GitHub Actions Variables Concepts](https://docs.github.com/en/actions/concepts/workflows-and-actions/variables)
 
-Reference: [GitHub Actions Variables Documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
-
+**Reference:** [GitHub Actions Variables Documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/variables)
 
 Environment variables are mainly used inside **runner shell commands**, **scripts**, and **runtime command execution**.
 
-Variables help store and reuse **non-sensitive configuration information** such as compiler flags, usernames, server names, environment-specific configuration, and application-specific values.
+Variables help store and reuse **non-sensitive configuration information** such as **compiler flags**, **usernames**, **server names**, **environment-specific configuration**, and **application-specific values**.
+
+GitHub Actions variables can be defined at multiple levels:
+
+* **Repository-level variables** can be accessed by all workflows within that repository.
+* Variables defined using **`env:`** can be scoped at the **workflow**, **job**, or **step** level and are available only within the scope where they are declared.
+* **Organization-level variables** can be shared across multiple repositories within a GitHub organization, allowing workflows across those repositories to access common configuration values.
+
+The level at which you define a variable depends on its intended **scope** and **reuse requirements**.
+
+As a general guideline:
+
+* use variables defined with **`env:`** for **workflow-specific configuration**
+* use **repository-level variables** for values shared across multiple workflows in the same repository
+* use **organization-level variables** for values shared across multiple repositories within an organization
+
+> **Note:** **Repository-level** and **organization-level variables** are configured through the **GitHub UI**, whereas variables defined using **`env:`** are declared directly inside the **workflow YAML file**.
 
 In GitHub Actions, variables are primarily of **two types**:
 
-* A. **Default Variables provided by GitHub**
-* B. **Custom Variables created by users**
+* **A. Default Variables provided by GitHub**
+* **B. Custom Variables created by users**
+
 
 ---
 
