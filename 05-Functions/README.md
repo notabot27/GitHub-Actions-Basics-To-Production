@@ -1,7 +1,7 @@
 # GitHub Actions Functions Explained | Build a Production-Style CI Pipeline
 
 ## Video reference for this lecture is the following:
-
+[![Watch the video](https://img.youtube.com/vi/Y0kDz3BEtM4/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y0kDz3BEtM4&ab_channel=CloudWithVarJosh)
 
 ---
 ## ⭐ Support the Project  
@@ -59,6 +59,8 @@ By the end of this lecture, you will understand both **General-Purpose Functions
 
 ## Functions
 
+![Alt text](/images/5a.png)
+
 **Functions** are built-in capabilities used within expressions (`${{ }}`) to process data, evaluate conditions, manipulate values, and make dynamic workflow execution decisions based on runtime information.
 
 Functions help implement **complex logic**, **dynamic evaluation**, and **conditional workflow behavior** inside GitHub Actions expressions.
@@ -75,6 +77,38 @@ These functions can be broadly divided into two categories:
 
 1. **General-Purpose Functions**
 2. **Status Check Functions**
+
+> **Important:** Functions are commonly used within expressions to process data, evaluate conditions, and generate dynamic values during workflow execution.
+>
+> One of their most common use cases is determining whether a **job** or **step** executes through an **`if:`** condition.
+>
+> Functions cannot be used at the **workflow trigger level (`on:`)**. Workflow execution is controlled by the **events**, **event filters**, and **activity types** defined under the **`on:`** block, which determine whether a workflow starts in the first place.
+>
+> In simple terms:
+>
+> * **Events, Event Filters & Activity Types** → Decide whether the workflow runs.
+> * **Functions & Expressions** → Help determine what happens after the workflow starts.
+>
+> This distinction is critical and will become much clearer in the upcoming demo.
+
+> **Where Can Functions Be Used?**
+>
+> Functions can be used almost anywhere **expressions (`${{ }}`)** are supported, including:
+>
+> * Job-level conditions (`if:`)
+> * Step-level conditions (`if:`)
+> * Environment variables (`env:`)
+> * Action parameters (`with:`)
+> * Matrix definitions
+> * Outputs
+>
+> **Important:** Functions cannot be used within the **workflow trigger block (`on:`)**. Workflow execution is controlled through **events**, **event filters**, and **activity types** rather than expressions and functions.
+>
+> As a general rule:
+>
+> * **Expression supported** → Functions can usually be used.
+> * **Workflow trigger (`on:`)** → Functions cannot be used.
+
 
 Reference:
 [https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#functions](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#functions)
@@ -708,6 +742,19 @@ This allows workflows to perform cleanup and notification activities before term
 ---
 
 > **Production Insight:** Status check functions are heavily used in production CI/CD pipelines to implement **deployment gates**, **failure recovery**, **incident notifications**, **cleanup automation**, and **workflow orchestration logic** based on the outcome of previous jobs and steps.
+
+> **Where Can Functions Be Used?**
+>
+> **General-Purpose Functions** are commonly used wherever GitHub Actions expressions (`${{ }}`) are supported, including **`if:` conditions**, **`env:` variables**, **`with:` parameters**, **outputs**, and **matrix definitions**.
+>
+> **Status Check Functions** are more specialized and are primarily used within **job-level** and **step-level `if:` conditions** to control execution based on the outcome of previous workflow activities.
+>
+> In simple terms:
+>
+> * **General-Purpose Functions** help process data, manipulate values, and build dynamic workflow logic.
+> * **Status Check Functions** help determine whether jobs and steps should execute based on success, failure, cancellation, or overall execution status.
+>
+> **Important:** Functions cannot be used within the **workflow trigger block (`on:`)**. Workflow execution is controlled through **events**, **event filters**, and **activity types** defined under the **`on:`** block.
 
 ---
 
